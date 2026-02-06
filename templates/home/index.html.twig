@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - EventHub
+{% endblock %}
+
+{% block body %}
+	<div class="container py-5">
+		<div class="row justify-content-center text-center mb-5">
+			<div class="col-lg-8">
+				<h1 class="display-4 fw-bold text-primary mb-3">Vos événements, simplifiés.</h1>
+				<p class="lead text-muted mb-4">Rejoignez une communauté passionnée et découvrez des meetups inspirants près de chez vous.</p>
+				<div class="d-flex justify-content-center gap-3">
+					<a href="{{ path('app_event_index') }}" class="btn btn-primary btn-lg px-4">Voir les événements</a>
+					<a href="{{ path('app_event_new') }}" class="btn btn-outline-secondary btn-lg px-4">Organiser un meetup</a>
+				</div>
+			</div>
+		</div>
+
+		<div
+			class="row g-4">
+			{# Placeholder for Event Cards #}
+			<div class="col-md-4">
+				<div class="card h-100 p-3">
+					<div class="card-body">
+						<h5 class="card-title">Atelier Symfony 7</h5>
+						<p class="card-text text-muted small">📅 24 Octobre 2024 • 📍 Paris</p>
+						<p class="card-text">Découvrez les nouveautés de Symfony 7 avec des experts.</p>
+						<a href="#" class="btn btn-sm btn-primary mt-3">Détails</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card h-100 p-3">
+					<div class="card-body">
+						<h5 class="card-title">Afterwork Tech</h5>
+						<p class="card-text text-muted small">📅 28 Octobre 2024 • 📍 Lyon</p>
+						<p class="card-text">Rencontrez d'autres passionnés autour d'un verre.</p>
+						<a href="#" class="btn btn-sm btn-primary mt-3">Détails</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card h-100 p-3">
+					<div class="card-body">
+						<h5 class="card-title">Conférence IA & Éthique</h5>
+						<p class="card-text text-muted small">📅 05 Novembre 2024 • 📍 En ligne</p>
+						<p class="card-text">Débattons ensemble des enjeux de l'intelligence artificielle.</p>
+						<a href="#" class="btn btn-sm btn-primary mt-3">Détails</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ event.title }}
+	- EventHub
+{% endblock %}
+
+{% block body %}
+	<div class="container py-5">
+		<div class="row">
+			<div class="col-md-8">
+				<h1 class="display-5 fw-bold text-primary mb-3">{{ event.title }}</h1>
+				<p class="lead text-muted">{{ event.description }}</p>
+
+				<hr class="my-4">
+
+				<div class="d-flex align-items-center mb-3">
+					<div class="me-4">
+						<span class="fs-4 text-primary">📅</span>
+						<span class="fw-bold">{{ event.date|date('d/m/Y') }}</span>
+						<span class="text-muted">à
+							{{ event.date|date('H:i') }}</span>
+					</div>
+					<div>
+						<span class="fs-4 text-primary">📍</span>
+						<span class="fw-bold">{{ event.location }}</span>
+					</div>
+				</div>
+
+				<div class="mb-4">
+					<span class="badge bg-secondary">{{ event.category.name }}</span>
+					<span class="text-muted ms-2">Organisé par
+						{{ event.creator.pseudo }}</span>
+				</div>
+
+				<div class="d-grid gap-2 d-md-block">
+					<a href="{{ path('app_event_index') }}" class="btn btn-outline-secondary">← Retour aux événements</a>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="card shadow-sm border-0 sticky-top" style="top: 2rem;">
+					<div class="card-body p-4">
+						<h5 class="card-title fw-bold mb-3">Inscription</h5>
+						<p class="mb-4">Il reste encore des places disponibles !</p>
+
+						{% if app.user %}
+							{{ form_start(reservationForm) }}
+							<div class="mb-3">
+								{{ form_row(reservationForm.guestCount) }}
+							</div>
+							<div class="d-grid">
+								<button type="submit" class="btn btn-primary btn-lg">Réserver mes places</button>
+							</div>
+							{{ form_end(reservationForm) }}
+						{% else %}
+							<div class="d-grid">
+								<a href="{{ path('app_login') }}" class="btn btn-primary">Connectez-vous pour réserver</a>
+							</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

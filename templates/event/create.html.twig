@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Organiser un événement
+{% endblock %}
+
+{% block body %}
+	<div class="container py-5">
+		<div class="row justify-content-center">
+			<div class="col-md-8">
+				<div class="card shadow-sm border-0">
+					<div class="card-body p-4 p-md-5">
+						<h1 class="h3 mb-4 fw-bold text-primary">Créer un nouvel événement</h1>
+
+						{{ form_start(eventForm) }}
+						<div class="row">
+							<div class="col-md-8 mb-3">
+								{{ form_row(eventForm.title) }}
+							</div>
+							<div class="col-md-4 mb-3">
+								{{ form_row(eventForm.category) }}
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								{{ form_row(eventForm.date) }}
+							</div>
+							<div class="col-md-6 mb-3">
+								{{ form_row(eventForm.maxPlaces) }}
+							</div>
+						</div>
+
+						<div class="mb-3">
+							{{ form_row(eventForm.location) }}
+						</div>
+
+						<div class="mb-4">
+							{{ form_row(eventForm.description) }}
+						</div>
+
+						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+							<a href="{{ path('app_event_index') }}" class="btn btn-outline-secondary me-md-2">Annuler</a>
+							<button type="submit" class="btn btn-primary">Créer l'événement</button>
+						</div>
+						{{ form_end(eventForm) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
