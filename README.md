@@ -1,5 +1,5 @@
 # 🎓 Symfony EventHub
-
+###### Fait avec IA car jamais fait de fichier .md 
 Salut ! 👋 Bienvenue sur mon projet **Symfony EventHub**. 
 
 Ceci est une application web développée dans le cadre de mon apprentissage du framework **Symfony**. Le but était de créer une plateforme web pour la gestion d'événements, avec une partie blog et une gestion complète des utilisateurs.
@@ -39,7 +39,7 @@ Assure-toi d'avoir **PHP 8.2+**, **Composer** et **Symfony CLI** installés sur 
 
 ### 2. Cloner le repo
 ```bash
-git clone https://github.com/ton-repo/symfony-test.git
+git clone https://github.com/kuru05/symfony-test.git
 cd symfony-test
 ```
 
