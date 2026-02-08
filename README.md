@@ -1,6 +1,6 @@
-# 🎓 Symfony Event Manager
+# 🎓 Symfony EventHub
 
-Salut ! 👋 Bienvenue sur mon projet **Symfony Event Manager**. 
+Salut ! 👋 Bienvenue sur mon projet **Symfony EventHub**. 
 
 Ceci est une application web développée dans le cadre de mon apprentissage du framework **Symfony**. Le but était de créer une plateforme web pour la gestion d'événements, avec une partie blog et une gestion complète des utilisateurs.
 
