@@ -56,15 +56,17 @@ cp .env .env.local
 Modifie la ligne `DATABASE_URL` dans `.env` avec les accès BDD.
 
 ### 5. Base de données & Données de test
-On crée la base, on fait les migrations et on injecte de la fausse data pour voir ce que ça donne :
+Un fichier `dump.sql` est disponible à la racine.
 
-```bash
-php bin/console doctrine:database:create
-
-php bin/console doctrine:migrations:migrate
-
-php bin/console doctrine:fixtures:load
-```
+1.  Créer la base de données (si ce n'est pas déjà fait) :
+    ```bash
+    php bin/console doctrine:database:create
+    ```
+2.  Importer le fichier SQL :
+    ```bash
+    # Exemple avec MySQL en ligne de commande (adapter user/password/bdd selon .env)
+    mysql -u root -p symfony_eventhub < dump.sql
+    ```
 ### Comptes de test
 Pour tester l'application, les comptes suivants ont été générés par les Fixtures :
 
