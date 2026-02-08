@@ -53,10 +53,10 @@ Crée un fichier `.env.local` à la racine pour tes variables d'environnement
 ```bash
 cp .env .env.local
 ```
-Modifie la ligne `DATABASE_URL` dans `.env.local` avec tes accès BDD.
+Modifie la ligne `DATABASE_URL` dans `.env` avec les accès BDD.
 
 ### 5. Base de données & Données de test
-On crée la base, on joue les migrations et on injecte de la fausse data pour que ce soit vivant :
+On crée la base, on fait les migrations et on injecte de la fausse data pour voir ce que ça donne :
 
 ```bash
 php bin/console doctrine:database:create
@@ -70,11 +70,11 @@ php bin/console doctrine:fixtures:load
 ```bash
 symfony serve
 ```
-Ouvre ton navigateur sur `http://127.0.0.1:8000`
+Ouvre le navigateur sur `http://127.0.0.1:8000`
 
 ## 🧐 Structure du code
 *   `src/Controller` : Toute la logique de mes pages (Events, Admin, Blog...) est ici.
-*   `src/Entity` : Mes objets PHP qui représentent mes tables en BDD.
+*   `src/Entity` : Mes Entités PHP qui représentent mes tables en BDD.
 *   `templates/` : Toutes les vues Twig. J'ai essayé de bien organiser ça par dossier (`event/`, `admin/`, etc.).
 
 ---
