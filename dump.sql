@@ -146,7 +146,7 @@ CREATE TABLE `reservation` (
   KEY `IDX_42C84955A76ED395` (`user_id`),
   CONSTRAINT `FK_42C8495571F7E88B` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`),
   CONSTRAINT `FK_42C84955A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,7 +155,7 @@ CREATE TABLE `reservation` (
 
 LOCK TABLES `reservation` WRITE;
 /*!40000 ALTER TABLE `reservation` DISABLE KEYS */;
-INSERT INTO `reservation` VALUES (6,2,'2026-02-06 22:39:53',23,8),(7,1,'2026-02-06 22:39:53',24,8),(8,2,'2026-02-06 22:39:53',27,8),(9,3,'2026-02-06 22:39:53',29,8),(10,3,'2026-02-06 22:39:53',42,8);
+INSERT INTO `reservation` VALUES (6,2,'2026-02-06 22:39:53',23,8),(7,1,'2026-02-06 22:39:53',24,8),(8,2,'2026-02-06 22:39:53',27,8),(9,3,'2026-02-06 22:39:53',29,8),(10,3,'2026-02-06 22:39:53',42,8),(11,1,'2026-02-08 17:54:44',29,15),(12,1,'2026-02-08 17:54:47',29,15),(13,1,'2026-02-08 17:54:49',29,15),(14,4,'2026-02-08 17:55:00',25,15);
 /*!40000 ALTER TABLE `reservation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,7 +174,7 @@ CREATE TABLE `user` (
   `pseudo` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -183,7 +183,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (8,'admin@eventhub.com','[\"ROLE_ADMIN\"]','$2y$13$gYqTqay6JuqrfMLXHrNHmOxTTwI7G6EPJ9RKD7X/83EPSXQSYhg12','Admin User'),(9,'user0@example.com','[\"ROLE_ADMIN\"]','$2y$13$4IFSxMnkQnYJ/C2MhCoLcuVAM395RukRBmjXa8vUZmVXonJ81As0y','User 0'),(10,'user1@example.com','[]','$2y$13$cju8fS5A6OSgzA0P6mUrT.PSs/fdUwIJ3R9.2MpYS1wiyzp3XfCRK','User 1'),(11,'user2@example.com','[]','$2y$13$mBQ.9sKO4.5rhHCkC6HTmO0Y7chqN2i4v9vONUcMGMT41hrJRQZEa','User 2'),(12,'user3@example.com','[]','$2y$13$JpJqssL0vEGWXNaX7H6dU.nVV8IU5fvyKox24Wy4GJUDrTn7ei/XS','User 3'),(13,'user4@example.com','[]','$2y$13$1HE1fG1XVsfK471Td.goRup2ltzBTZ9KAvRVavhA9ch.psP7Nky4y','User 4'),(14,'newadmin@example.com','[\"ROLE_ADMIN\"]','$2y$13$iIDl4m.vhgTJZjfqSoXExe9SykrlkTsSw.bgEFUEUwNHn3eOGG6Ji','NewAdmin');
+INSERT INTO `user` VALUES (8,'admin@eventhub.com','[\"ROLE_ADMIN\"]','$2y$13$gYqTqay6JuqrfMLXHrNHmOxTTwI7G6EPJ9RKD7X/83EPSXQSYhg12','Admin User'),(15,'usertest@eventhub.com','[\"ROLE_USER\"]','$2y$13$vB5zqR.k1bm5SyEdiXz9zOnuI0IRuGSfsujptIOztxsG91hit4w/2','usertest');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -196,4 +196,5 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-02-08 18:39:36
+-- Dump completed on 2026-02-08 19:09:15
+
