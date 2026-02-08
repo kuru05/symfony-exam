@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion Réservations - Admin
+{% endblock %}
+
+{% block body %}
+	<div class="container py-5">
+		<div class="d-flex justify-content-between align-items-center mb-4">
+			<div>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb mb-1">
+						<li class="breadcrumb-item">
+							<a href="{{ path('app_admin_dashboard') }}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page">Réservations</li>
+					</ol>
+				</nav>
+				<h1 class="h3 fw-bold text-primary">Toutes les réservations</h1>
+			</div>
+		</div>
+
+		<div class="card shadow-sm border-0">
+			<div class="card-body p-0">
+				<div class="table-responsive">
+					<table class="table table-hover mb-0 align-middle">
+						<thead class="bg-light">
+							<tr>
+								<th class="ps-4">Utilisateur</th>
+								<th>Événement</th>
+								<th>Places</th>
+								<th>Date Event</th>
+								<th>Date Résa</th>
+								<th class="text-end pe-4">Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for reservation in reservations %}
+								<tr>
+									<td class="ps-4">
+										<div class="fw-bold">{{ reservation.user.pseudo }}</div>
+										<div class="text-muted small">{{ reservation.user.email }}</div>
+									</td>
+									<td>{{ reservation.event.title }}</td>
+									<td>
+										<span class="badge bg-info text-dark rounded-pill">{{ reservation.guestCount }}</span>
+									</td>
+									<td>{{ reservation.event.date|date('d/m/Y') }}</td>
+									<td>{{ reservation.createdAt|date('d/m/Y H:i') }}</td>
+									<td class="text-end pe-4">
+										<form method="post" action="{{ path('app_admin_reservation_delete', {'id': reservation.id}) }}" onsubmit="return confirm('Voulez-vous vraiment annuler cette réservation ?');" style="display: inline-block;">
+											<button class="btn btn-sm btn-outline-danger">Annuler</button>
+										</form>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="6" class="text-center py-4">Aucune réservation trouvée.</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

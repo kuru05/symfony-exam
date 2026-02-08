@@ -17,12 +17,30 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class EventController extends AbstractController
 {
     #[Route('/', name: 'app_event_index', methods: ['GET'])]
-    public function index(EntityManagerInterface $entityManager): Response
-    {
-        $events = $entityManager->getRepository(Event::class)->findBy([], ['date' => 'ASC']);
+    public function index(
+        Request $request,
+        \App\Repository\EventRepository $eventRepository,
+        \App\Repository\CategoryRepository $categoryRepository
+    ): Response {
+        $query = $request->query->get('q');
+        $categoryId = $request->query->get('category');
+        $city = $request->query->get('city');
+
+        $category = $categoryId ? $categoryRepository->find($categoryId) : null;
+
+        $events = $eventRepository->findWithSearch($query, $category, $city);
+        $cities = $eventRepository->findAllCities();
+        $categories = $categoryRepository->findAll();
 
         return $this->render('event/index.html.twig', [
             'events' => $events,
+            'cities' => $cities,
+            'categories' => $categories,
+            'currentFilters' => [
+                'q' => $query,
+                'category' => $categoryId,
+                'city' => $city,
+            ]
         ]);
     }
 

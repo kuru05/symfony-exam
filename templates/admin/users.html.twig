@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion Utilisateurs - Admin
+{% endblock %}
+
+{% block body %}
+	<div class="container py-5">
+		<div class="d-flex justify-content-between align-items-center mb-4">
+			<div>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb mb-1">
+						<li class="breadcrumb-item">
+							<a href="{{ path('app_admin_dashboard') }}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page">Utilisateurs</li>
+					</ol>
+				</nav>
+				<h1 class="h3 fw-bold text-primary">Gestion des utilisateurs</h1>
+			</div>
+			<a href="{{ path('app_admin_user_create') }}" class="btn btn-success">Ajouter un utilisateur</a>
+		</div>
+
+		<div class="card shadow-sm border-0">
+			<div class="card-body p-0">
+				<div class="table-responsive">
+					<table class="table table-hover mb-0 align-middle">
+						<thead class="bg-light">
+							<tr>
+								<th class="ps-4">Email</th>
+								<th>Pseudo</th>
+								<th>Rôles</th>
+								<th>Nombre de réservations</th>
+								<th class="text-end pe-4">Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for user in users %}
+								<tr>
+									<td class="ps-4 fw-bold">{{ user.email }}</td>
+									<td>{{ user.pseudo }}</td>
+									<td>
+										{% for role in user.roles %}
+											{% if role == 'ROLE_ADMIN' %}
+												<span class="badge bg-danger">ADMIN</span>
+											{% elseif role == 'ROLE_USER' %}
+												<span class="badge bg-secondary">USER</span>
+											{% else %}
+												<span class="badge bg-info text-dark">{{ role }}</span>
+											{% endif %}
+										{% endfor %}
+									</td>
+									<td>
+										<span class="badge bg-light text-dark border">{{ user.events|length }}
+											événements créés</span>
+									</td>
+									<td class="text-end pe-4">
+										{% if 'ROLE_ADMIN' in user.roles %}
+											{% if user != app.user %}
+												<form method="post" action="{{ path('app_admin_user_demote', {'id': user.id}) }}" style="display: inline-block;">
+													<button class="btn btn-sm btn-outline-warning" title="Rétrograder">⬇️ User</button>
+												</form>
+											{% else %}
+												<span class="text-muted small fst-italic me-2">C'est vous</span>
+											{% endif %}
+										{% else %}
+											<form method="post" action="{{ path('app_admin_user_promote', {'id': user.id}) }}" style="display: inline-block;">
+												<button class="btn btn-sm btn-outline-success" title="Promouvoir Admin">⬆️ Admin</button>
+											</form>
+										{% endif %}
+
+										{% if user != app.user %}
+											<form method="post" action="{{ path('app_admin_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Attention : Supprimer un utilisateur supprimera aussi tous ses événements et réservations ! Êtes-vous sûr ?');" style="display: inline-block;">
+												<button class="btn btn-sm btn-outline-danger ms-1">Supprimer</button>
+											</form>
+										{% endif %}
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="5" class="text-center py-4">Aucun utilisateur trouvé.</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

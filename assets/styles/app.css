@@ -5,6 +5,25 @@
     --background-color: #f8f9fa;
     --text-color: #212529;
     --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --navbar-bg: white;
+    --footer-bg: white;
+    --card-bg: white;
+    --filter-block-bg: #f8f9fa;
+    --input-group-bg: white;
+}
+
+[data-bs-theme="dark"] {
+    --primary-color: #ecf0f1;
+    --secondary-color: #bdc3c7;
+    --accent-color: #5dade2;
+    --background-color: #212529;
+    --text-color: #f8f9fa;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    --navbar-bg: #2c3035;
+    --footer-bg: #2c3035;
+    --card-bg: #2c3035;
+    --filter-block-bg: rgba(255, 255, 255, 0.03);
+    --input-group-bg: #212529;
 }
 
 body {
@@ -26,6 +45,7 @@ h6 {
 }
 
 .card {
+    background-color: var(--card-bg);
     border: none;
     border-radius: 12px;
     box-shadow: var(--card-shadow);
@@ -56,7 +76,7 @@ h6 {
 
 .navbar {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    background-color: white !important;
+    background-color: var(--navbar-bg) !important;
     padding: 1rem 0;
 }
 
@@ -64,4 +84,74 @@ h6 {
     font-weight: 800;
     color: var(--primary-color) !important;
     letter-spacing: -0.5px;
+}
+
+/* Footer Fix */
+.footer {
+    background-color: var(--footer-bg) !important;
+}
+
+/* Bootstrap Overrides for Dark Mode */
+[data-bs-theme="dark"] .bg-white {
+    background-color: var(--navbar-bg) !important;
+}
+
+[data-bs-theme="dark"] .text-muted {
+    color: #adb5bd !important;
+}
+
+[data-bs-theme="dark"] .dropdown-menu {
+    background-color: var(--card-bg);
+    border-color: #495057;
+}
+
+[data-bs-theme="dark"] .dropdown-item {
+    color: var(--text-color);
+}
+
+[data-bs-theme="dark"] .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Custom Filter Box Styles */
+.bg-filter-block {
+    background-color: var(--filter-block-bg) !important;
+}
+
+.bg-input-group {
+    background-color: var(--input-group-bg) !important;
+}
+
+/* Form Controls in Dark Mode */
+[data-bs-theme="dark"] .form-control,
+[data-bs-theme="dark"] .form-select {
+    background-color: #212529;
+    border-color: #495057;
+    color: var(--text-color);
+}
+
+[data-bs-theme="dark"] .form-control:focus,
+[data-bs-theme="dark"] .form-select:focus {
+    background-color: #2b3035;
+    border-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+[data-bs-theme="dark"] .input-group-text {
+    background-color: #2c3035;
+    border-color: #495057;
+    color: var(--text-color);
+}
+
+/* Result Count Badge */
+.badge-count {
+    background-color: #f8f9fa;
+    color: #212529;
+    border: 1px solid #dee2e6;
+}
+
+[data-bs-theme="dark"] .badge-count {
+    background-color: #343a40;
+    color: #f8f9fa;
+    border-color: #495057;
 }

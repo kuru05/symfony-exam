@@ -20,4 +20,41 @@ class EventRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Event::class);
     }
+    public function findWithSearch(?string $query, ?\App\Entity\Category $category, ?string $city): array
+    {
+        $qb = $this->createQueryBuilder('e')
+            ->leftJoin('e.category', 'c')
+            ->addSelect('c')
+            ->leftJoin('e.creator', 'u')
+            ->addSelect('u')
+            ->orderBy('e.date', 'ASC');
+
+        if ($query) {
+            $qb->andWhere('e.title LIKE :query OR e.description LIKE :query')
+               ->setParameter('query', '%' . $query . '%');
+        }
+
+        if ($category) {
+            $qb->andWhere('e.category = :category')
+               ->setParameter('category', $category);
+        }
+
+        if ($city) {
+            $qb->andWhere('e.location = :city')
+               ->setParameter('city', $city);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findAllCities(): array
+    {
+        $rows = $this->createQueryBuilder('e')
+            ->select('DISTINCT e.location')
+            ->orderBy('e.location', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+        return array_map(fn($row) => $row['location'], $rows);
+    }
 }

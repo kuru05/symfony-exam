@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion Événements - Admin
+{% endblock %}
+
+{% block body %}
+	<div class="container py-5">
+		<div class="d-flex justify-content-between align-items-center mb-4">
+			<div>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb mb-1">
+						<li class="breadcrumb-item">
+							<a href="{{ path('app_admin_dashboard') }}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page">Événements</li>
+					</ol>
+				</nav>
+				<h1 class="h3 fw-bold text-primary">Gestion des événements</h1>
+			</div>
+			<a href="{{ path('app_event_new') }}" class="btn btn-primary">Créer un événement</a>
+		</div>
+
+		<div class="card shadow-sm border-0">
+			<div class="card-body p-0">
+				<div class="table-responsive">
+					<table class="table table-hover mb-0 align-middle">
+						<thead class="bg-light">
+							<tr>
+								<th class="ps-4">Titre</th>
+								<th>Date</th>
+								<th>Lieu</th>
+								<th>Créateur</th>
+								<th>Catégorie</th>
+								<th class="text-end pe-4">Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for event in events %}
+								<tr>
+									<td class="ps-4 fw-bold">{{ event.title }}</td>
+									<td>{{ event.date|date('d/m/Y H:i') }}</td>
+									<td>{{ event.location }}</td>
+									<td>{{ event.creator.pseudo }}</td>
+									<td>
+										<span class="badge bg-secondary">{{ event.category.name }}</span>
+									</td>
+									<td class="text-end pe-4">
+										<a href="{{ path('app_event_show', {'id': event.id}) }}" class="btn btn-sm btn-outline-info me-1">Voir</a>
+										<a href="{{ path('app_admin_event_edit', {'id': event.id}) }}" class="btn btn-sm btn-outline-warning me-1">Modifier</a>
+
+										<form method="post" action="{{ path('app_admin_event_delete', {'id': event.id}) }}" onsubmit="return confirm('Supprimer cet événement entraînera la suppression de toutes les réservations associées. Êtes-vous sûr ?');" style="display: inline-block;">
+											<button class="btn btn-sm btn-outline-danger">Supprimer</button>
+										</form>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="6" class="text-center py-4">Aucun événement trouvé.</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
